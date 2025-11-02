@@ -1,4 +1,4 @@
-module github.com/oreoluwa-bs/the-gains-father
+module github.com/oreoluwa-bs/herctually
 
 go 1.24.5
 

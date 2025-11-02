@@ -10,7 +10,7 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/openai/openai-go/v3"
 	"github.com/openai/openai-go/v3/option"
-	"github.com/oreoluwa-bs/the-gains-father/agent"
+	"github.com/oreoluwa-bs/herctually/agent"
 )
 
 func main() {
@@ -41,7 +41,13 @@ func main() {
 		option.WithBaseURL(baseURL),
 	)
 
-	ag := agent.New(&llm, getUserMessage)
+	ag := agent.New(&llm, getUserMessage,
+		[]agent.ToolDefinition{
+			agent.SurfTheWebDefinition,
+			agent.EditFileDefinition,
+			agent.ListFilesDefinition,
+			agent.ReadFileDefinition,
+		})
 
 	if err := ag.Run(context.Background()); err != nil {
 		fmt.Printf("Error: %s\n", err)
